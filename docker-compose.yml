@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  postgres:
+    build:
+      context: docker
+      dockerfile: postgres/postgres.dockerfile
+    environment:
+      POSTGRES_VERSION: 14.5
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: security
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "54325:5432"
+    networks:
+      - firstSpring
+
+networks:
+  firstSpring:
+    driver: bridge
+
+volumes:
+  postgres:
