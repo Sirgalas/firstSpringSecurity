@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="/process_login">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                    Неправильное имя и пароль
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
