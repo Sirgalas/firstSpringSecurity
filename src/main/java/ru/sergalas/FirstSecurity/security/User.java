@@ -15,9 +15,9 @@ public class User implements UserDetails {
     private String role;
     private boolean accessToRestrictedPolicy;
 
-    public User(String name, String password)
+    public User(String userName, String password)
     {
-        userName  = name;
+        this.userName  = userName;
         this.password = password;
     }
 
@@ -37,21 +37,11 @@ public class User implements UserDetails {
         return Collections.singletonList(new SimpleGrantedAuthority("USER"));
     }
 
-
-    public User withPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
     @Override
     public String getPassword() {
         return this.password;
     }
 
-    public User withUserName(String userName) {
-        this.userName = userName;
-        return this;
-    }
 
     @Override
     public String getUsername() {
