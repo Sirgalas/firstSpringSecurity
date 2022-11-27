@@ -12,8 +12,6 @@ public class User implements UserDetails {
     private String userName;
     private String password;
 
-    private String role;
-    private boolean accessToRestrictedPolicy;
 
     public User(String userName, String password)
     {
@@ -21,19 +19,9 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public User withAccessToRestrictedPolicy(boolean restrictedPolicy) {
-        this.accessToRestrictedPolicy = restrictedPolicy;
-        return this;
-    }
-
-    public boolean hasAccessToRestrictedPolicy() {
-        return accessToRestrictedPolicy;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // SHOW_ACCOUNT, WITHDRAW_MONEY, SEND_MONEY
-        // ROLE_ADMIN, ROLE_USER - это роли
         return Collections.singletonList(new SimpleGrantedAuthority("USER"));
     }
 
@@ -47,24 +35,23 @@ public class User implements UserDetails {
     public String getUsername() {
         return this.userName;
     }
-
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

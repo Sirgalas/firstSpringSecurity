@@ -38,31 +38,20 @@ public class SecurityConfig {
         this.personDetailService = personDetailService;
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public PasswordEncoder getPasswordEncoder()
     {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(new User("user",bCryptPasswordEncoder.encode("user")));
-        manager.createUser(new User("admin",bCryptPasswordEncoder.encode("admin")));
-        return manager;
-    }
 
     @Bean
-    public AuthenticationManager authManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder,UserDetailsService userDetailsService)
+    public AuthenticationManager authManager(HttpSecurity http, PasswordEncoder getPasswordEncoder,UserDetailsService userDetailsService)
             throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder)
+                .userDetailsService(personDetailService)
+                .passwordEncoder(getPasswordEncoder)
                 .and()
                 .build();
     }
@@ -74,16 +63,23 @@ public class SecurityConfig {
     //и авторизацию
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
+            .csrf()
+                .disable()
             .authorizeRequests()
-            .antMatchers("/auth/login","/error").permitAll()
-            .anyRequest().hasAnyRole("USER")
+            .antMatchers("/auth/login","/auth/registration","/error")
+                .permitAll()
+            .anyRequest()
+                .authenticated()
             .and()
             .formLogin()
             .loginPage("/auth/login")
             .loginProcessingUrl("/process_login")
             .defaultSuccessUrl("/hello",true)
-            .failureUrl("/auth/login?error");
+            .failureUrl("/auth/login?error")
+            .and().
+            logout().
+            logoutUrl("/logout").
+            logoutSuccessUrl("/auth/login");
         return http.build();
     }
 

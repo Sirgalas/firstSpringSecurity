@@ -27,4 +27,5 @@ public class PersonDetailService implements UserDetailsService {
         }
         return new PersonDetails(person.get());
     }
+
 }
