@@ -10,7 +10,6 @@ import ru.sergalas.FirstSecurity.security.PersonDetails;
 public class HelloController {
     @GetMapping("/hello")
     public String sayHello() {
-        System.out.println("hello");
         return "site/hello";
     }
 

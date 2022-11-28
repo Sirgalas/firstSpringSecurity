@@ -2,6 +2,7 @@ package ru.sergalas.FirstSecurity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,6 +29,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@Configuration
 public class SecurityConfig {
     private final PersonDetailService personDetailService;
 
@@ -63,8 +65,6 @@ public class SecurityConfig {
     //и авторизацию
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf()
-                .disable()
             .authorizeRequests()
             .antMatchers("/auth/login","/auth/registration","/error")
                 .permitAll()
