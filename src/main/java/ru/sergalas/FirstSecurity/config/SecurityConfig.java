@@ -66,10 +66,10 @@ public class SecurityConfig {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/auth/login","/auth/registration","/error")
+            .antMatchers("/admin").hasRole("ADMIN")
+            .antMatchers("/auth/login","/auth/registration","/error","/css","js")
                 .permitAll()
-            .anyRequest()
-                .authenticated()
+            .anyRequest().hasAnyRole("USER","ADMIN")
             .and()
             .formLogin()
             .loginPage("/auth/login")
@@ -78,7 +78,7 @@ public class SecurityConfig {
             .failureUrl("/auth/login?error")
             .and().
             logout().
-            logoutUrl("/logout").
+            logoutUrl("/auth/logout").
             logoutSuccessUrl("/auth/login");
         return http.build();
     }

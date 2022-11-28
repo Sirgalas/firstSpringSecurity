@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<nav th:insert="base :: nav"></nav>
+<h1>admin</h1>
+<form th:action="@{/logout}" th:method="POST">
+  <button type="submit" class="btn btn-primary">logout</button>
+</form>
+</body>
+</html>
