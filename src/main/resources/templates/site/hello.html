@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<nav th:insert="base :: nav"></nav>
+<nav th:insert="base :: nav(admin=${admin})"></nav>
     <h1>hello world</h1>
     <form th:action="@{/logout}" th:method="POST">
         <button type="submit" class="btn btn-primary">logout</button>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.sergalas.FirstSecurity.entities.Person;
+import ru.sergalas.FirstSecurity.entities.users.User;
 import ru.sergalas.FirstSecurity.services.RegistrationService;
 import ru.sergalas.FirstSecurity.validator.PersonValidator;
 
@@ -33,13 +33,13 @@ public class AuthController {
     }
 
     @GetMapping("/registration")
-    public String registration(@ModelAttribute("person") Person person)
+    public String registration(@ModelAttribute("person") User person)
     {
         return "auth/registration";
     }
 
     @PostMapping("/registration")
-    public String performRegistration(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult)
+    public String performRegistration(@ModelAttribute("person") @Valid User person, BindingResult bindingResult)
     {
         personValidator.validate(person, bindingResult);
         if(bindingResult.hasErrors()){

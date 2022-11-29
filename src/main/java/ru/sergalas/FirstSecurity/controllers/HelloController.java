@@ -2,8 +2,9 @@ package ru.sergalas.FirstSecurity.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.sergalas.FirstSecurity.services.AdminServices;
+import ru.sergalas.FirstSecurity.services.admin.AdminServices;
 
 @Controller
 public class HelloController {
@@ -15,14 +16,16 @@ public class HelloController {
 
 
     @GetMapping("/hello")
-    public String sayHello() {
+    public String sayHello(Model model) {
+        model.addAttribute(
+                "admin", adminServices.isAdmin()
+        );
         return "site/hello";
     }
 
     @GetMapping("/showUserInfo")
     public String showUserInfo()
     {
-        adminServices.showUserInfo();
         return "site/hello";
     }
 }

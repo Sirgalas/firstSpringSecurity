@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+  <meta charset="UTF-8">
+  <title>show book</title>
+</head>
+<body>
+<nav th:insert="base :: nav"></nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5" >
+        <a th:href="@{/books/{id}/edit(id = ${book.getId()})}" class="btn btn-success">Update</a>
+      </div>
+      <div class="col-md-6">
+        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Field</th>
+          <th scope="col">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Id</td>
+            <td th:text="${book.getId()}">Id</td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td th:text="${book.getName()}">Name</td>
+          <tr>
+            <td>Name</td>
+            <td th:text="${book.getYear()}">Age</td>
+          </tr>
+        </tbody>
+      </table>
+      <div th:if="${owner}"  class="col-12">
+        <div class="col-5">
+          <span> Книга сейчас у </span><span th:text="${owner.getName()}">name</span>
+          <span class="text-danger" th:if="${book.getDate().isExpired()}">книга просрочена</span>
+        </div>
+        <div class="col-5">
+          <form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+            <input type="submit"  class="btn btn-warning" value="Освободить книгу" />
+          </form>
+        </div>
+      </div>
+      <div th:if="${users}" class="col-12">
+        <span>Эта книга свободна Кому назначить ?</span>
+        <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+          <div class="form-group">
+            <label for="user">Выберите человека</label>
+            <select th:object="${user}" th:field="*{id}" id="user" class="form-control">
+              <option th:each="user : ${users}" th:value="${user.getId()}" th:text="${user.getName()}"></option>
+            </select>
+          </div>
+          <button type="submit"  class="btn btn-primary">Назначить книгу</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

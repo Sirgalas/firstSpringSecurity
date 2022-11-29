@@ -1,4 +1,4 @@
-package ru.sergalas.FirstSecurity.entities;
+package ru.sergalas.FirstSecurity.entities.users;
 
 import lombok.*;
 
@@ -6,15 +6,18 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
-@Table(name = "Person")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Person{
+@Table(name = "Person")
+public class User {
+
+    public static final String ADMIN = "ROLE_ADMIN";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +32,15 @@ public class Person{
     @Column(name = "year_of_birth")
     private int yearOfBirth;
 
-    @Column(name = "password")
+    @Column(name = "password",nullable = false)
     private String password;
 
     @Column(name = "role")
     private String role;
+
+    public boolean isRoleUser(String role)
+    {
+        return Objects.equals(role, this.role);
+    }
 
 }

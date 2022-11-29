@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>edit book</title>
+</head>
+<body>
+<nav th:insert="base :: nav"></nav>
+    <div class="container">
+        <div class="row">
+            <form th:action="@{/books/{id}(id = ${book.getId()})}" th:method="POST"  th:object="${book}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" th:field="*{name}" id="name" class="form-control" />
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error Name</div>
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">Author</label>
+                    <input type="text" th:field="*{author}" id="age"  class="form-control" />
+                    <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}"  class="text-danger">Age error</div>
+                </div>
+                <div class="mb-3">
+                    <label for="year" class="form-label">Year</label>
+                    <input type="text" th:field="*{year}" id="year"  class="form-control" />
+                    <div th:if="${#fields.hasErrors('year')}" th:errors="*{year}"  class="text-danger">Age error</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

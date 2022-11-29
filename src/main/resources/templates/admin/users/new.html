@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>Create new user</title>
+</head>
+<body>
+    <nav th:insert="base :: nav(admin=${admin})"></nav>
+    <div class="container">
+        <div class="row">
+            <form th:action="@{admin/users}" th:method="POST"  th:object="${user}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" th:field="*{name}" id="name" class="form-control" />
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error Name</div>
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age</label>
+                    <input type="text" th:field="*{age}" id="age"  class="form-control" />
+                    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"  class="text-danger">Age error</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

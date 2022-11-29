@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>Person</title>
+</head>
+<body>
+<nav th:insert="base :: nav(admin=${admin})"></nav>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Id</td>
+                    <td th:text="${user.getId()}">Id</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td th:text="${user.getUsername()}">Name</td>
+                <tr>
+                    <td>Name</td>
+                    <td th:text="${user.getYearOfBirth()}">Age</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table" th:if="${!books.isEmpty()}">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Year</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "book: ${books}">
+                    <td th:text="${book.getId()}">Id</td>
+                    <td th:text="${book.getName()}">Name</td>
+                    <td th:text="${book.getAuthor()}">Author</td>
+                    <td th:text="${book.getYear()}">Year</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-md-5" >
+            <a th:href="@{/admin/users/{id}/edit(id = ${user.getId()})}" class="btn btn-success">Update</a>
+        </div>
+        <div class="col-md-6">
+            <form th:method="DELETE" th:action="@{/admin/users/{id}(id=${user.getId()})}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

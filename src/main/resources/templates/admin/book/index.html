@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>index book</title>
+</head>
+<body>
+<nav th:insert="base :: nav"></nav>
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "book: ${books}">
+                    <td th:text="${book.getId()}">Id</td>
+                    <td th:text="${book.getName()}">Name</td>
+                    <td th:text="${book.getAuthor()}">Author</td>
+                    <td th:text="${book.getYear()}">Year</td>
+                    <td><a th:href="@{/books/{id}(id = ${book.getId()})}"  th:text="Редактировать" >update</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="/books/new" class="btn btn-primary">Новая книга</a>
+        </div>
+    </div>
+</body>
+</html>

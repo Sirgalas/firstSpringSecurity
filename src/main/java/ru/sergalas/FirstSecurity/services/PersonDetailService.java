@@ -4,7 +4,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.sergalas.FirstSecurity.entities.Person;
+import ru.sergalas.FirstSecurity.entities.users.User;
 import ru.sergalas.FirstSecurity.repositories.PeopleRepository;
 import ru.sergalas.FirstSecurity.security.PersonDetails;
 
@@ -21,7 +21,7 @@ public class PersonDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional <Person> person = peopleRepository.findByUsername(username);
+        Optional <User> person = peopleRepository.findByUsername(username);
         if(person.isEmpty()) {
             throw new UsernameNotFoundException("User not found or incorrect password");
         }

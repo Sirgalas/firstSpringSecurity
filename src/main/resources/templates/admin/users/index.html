@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base :: common_header(~{::title})">
-    <meta charset="UTF-8">
-    <title>title</title>
+    <title>People</title>
 </head>
 <body>
-<nav th:insert="base :: nav"></nav>
-<h1>admin</h1>
-<form th:action="@{/logout}" th:method="POST">
-  <button type="submit" class="btn btn-primary">logout</button>
-</form>
+<nav th:insert="base :: nav(admin=${admin})"></nav>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td></td>
+                <td>
+                    <a th:href="@{/admin/users/{id}(id = ${user.getId()})}" th:text="${user.getUsername() + ', ' + user.getYearOfBirth()}">user</a>
+                </td>
+                <td>
+                    <p th:text="${user.getRole()}">role</td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="admin/users/new" class="btn btn-primary"> Новый пользователь</a>
+    </div>
+</div>
+
 </body>
 </html>

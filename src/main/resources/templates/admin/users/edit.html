@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: common_header(~{::title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:insert="base :: nav(admin=${admin})"></nav>
+<div class="container">
+    <div class="row">
+        <form th:action="@{/admin/users/{id}(id = ${user.getId()})}" th:method="PATCH"  th:object="${user}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" th:field="*{username}" id="name" class="form-control" />
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger">Error Name</div>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="text" th:field="*{yearOfBirth}" id="age" class="form-control"/>
+                <div th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}" class="text-danger">Error age</div>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select th:object="${user}" id="role" th:field="*{role}"  class="form-control"> <!--Supplement an id here instead of using 'name'-->
+                    <option th:each="enumRole:${enumRoles}" th:value="${enumRole}" th:text="${enumRole}" th:selected="${user.isRoleUser(enumRole)}">Role</option>
+                </select>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Error password</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -3,16 +3,16 @@ package ru.sergalas.FirstSecurity.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.sergalas.FirstSecurity.entities.Person;
+import ru.sergalas.FirstSecurity.entities.users.User;
 
 import java.util.Collection;
 import java.util.Collections;
 
 public class PersonDetails implements UserDetails {
 
-    private final Person person;
+    private final User person;
 
-    public PersonDetails(Person person)
+    public PersonDetails(User person)
     {
         this.person = person;
     }
@@ -53,7 +53,7 @@ public class PersonDetails implements UserDetails {
         return true;
     }
 
-    public Person getPerson() {
+    public User getPerson() {
         return this.person;
     }
 
