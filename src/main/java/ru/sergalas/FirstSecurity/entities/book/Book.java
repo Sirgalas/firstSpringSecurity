@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

@@ -3,7 +3,7 @@ package ru.sergalas.FirstSecurity.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 
 import java.util.Collection;
 import java.util.Collections;

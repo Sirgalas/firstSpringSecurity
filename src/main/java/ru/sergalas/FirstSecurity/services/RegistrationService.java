@@ -3,7 +3,7 @@ package ru.sergalas.FirstSecurity.services;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 import ru.sergalas.FirstSecurity.repositories.PeopleRepository;
 
 import java.util.Optional;

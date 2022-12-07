@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.sergalas.FirstSecurity.entities.book.Book;
 import ru.sergalas.FirstSecurity.entities.book.Date;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 import ru.sergalas.FirstSecurity.repositories.BookRepository;
 import ru.sergalas.FirstSecurity.repositories.UserRepository;
 

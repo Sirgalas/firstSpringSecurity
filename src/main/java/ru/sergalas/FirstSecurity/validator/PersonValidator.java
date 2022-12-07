@@ -3,7 +3,7 @@ package ru.sergalas.FirstSecurity.validator;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 import ru.sergalas.FirstSecurity.services.RegistrationService;
 
 @Component

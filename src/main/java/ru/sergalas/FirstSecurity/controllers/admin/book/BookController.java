@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.sergalas.FirstSecurity.controllers.admin.BaseAdminController;
 import ru.sergalas.FirstSecurity.entities.book.Book;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 import ru.sergalas.FirstSecurity.services.admin.AdminServices;
 import ru.sergalas.FirstSecurity.services.admin.BookService;
 import ru.sergalas.FirstSecurity.services.admin.UserService;

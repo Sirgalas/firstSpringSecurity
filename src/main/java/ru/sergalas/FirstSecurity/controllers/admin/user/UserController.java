@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.sergalas.FirstSecurity.controllers.admin.BaseAdminController;
-import ru.sergalas.FirstSecurity.entities.users.Roles;
-import ru.sergalas.FirstSecurity.entities.users.User;
+import ru.sergalas.FirstSecurity.entities.users.entities.Roles;
+import ru.sergalas.FirstSecurity.entities.users.entities.User;
 import ru.sergalas.FirstSecurity.services.admin.AdminServices;
 import ru.sergalas.FirstSecurity.services.admin.UserService;
 
